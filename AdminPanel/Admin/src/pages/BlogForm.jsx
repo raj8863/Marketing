@@ -53,7 +53,7 @@ const BlogForm = ({ initialData = null, onSave, onCancel }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/blogs/${initialData._id}/comment/${commentId}`,
+        `https://marketing-b3je.onrender.com/api/blogs/${initialData._id}/comment/${commentId}`,
         { method: "DELETE" }
       );
 
@@ -81,8 +81,8 @@ const BlogForm = ({ initialData = null, onSave, onCancel }) => {
     };
 
     const url = initialData
-      ? `http://localhost:5000/api/blogs/${initialData._id}`
-      : `http://localhost:5000/api/blogs`;
+      ? `https://marketing-b3je.onrender.com/api/blogs/${initialData._id}`
+      : `https://marketing-b3je.onrender.com/api/blogs`;
 
     const method = initialData ? "PUT" : "POST";
 

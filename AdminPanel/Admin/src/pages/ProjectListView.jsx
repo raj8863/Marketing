@@ -9,7 +9,7 @@ export const ProjectListView = ({ onEdit, refreshTrigger }) => {
   const fetchProjects = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/projects');
+      const res = await fetch('https://marketing-b3je.onrender.com/api/projects');
       const data = await res.json();
       setProjects(data);
     } catch (err) { 
@@ -32,7 +32,7 @@ export const ProjectListView = ({ onEdit, refreshTrigger }) => {
   const deleteProject = async (id) => {
     if (window.confirm("CRITICAL: Delete this project permanently from the archives?")) {
       try {
-        const res = await fetch(`http://localhost:5000/api/projects/${id}`, { method: 'DELETE' });
+        const res = await fetch(`https://marketing-b3je.onrender.com/api/projects/${id}`, { method: 'DELETE' });
         if (res.ok) setProjects(prev => prev.filter(p => p._id !== id));
       } catch (err) { alert("Delete failed."); }
     }

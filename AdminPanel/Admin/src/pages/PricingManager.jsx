@@ -7,7 +7,7 @@ const PricingManager = ({ onEdit }) => {
 
   const fetchPlans = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/pricing");
+      const res = await fetch("https://marketing-b3je.onrender.com/api/pricing");
       if (!res.ok) throw new Error("Failed to fetch nodes");
       const data = await res.json();
       setPlans(data);
@@ -30,7 +30,7 @@ const PricingManager = ({ onEdit }) => {
     if (!window.confirm("CRITICAL: Terminate this plan protocol from public site?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/pricing/${id}`, {
+      const res = await fetch(`https://marketing-b3je.onrender.com/api/pricing/${id}`, {
         method: "DELETE",
         headers: { 
           "Authorization": `Bearer ${token.trim()}` 

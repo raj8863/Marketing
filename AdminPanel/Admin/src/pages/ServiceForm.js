@@ -70,7 +70,7 @@ const ServiceForm = ({ initialData = null, onSave, onCancel }) => {
       process: formData.process.filter(s => s.title.trim() !== "") 
     };
     
-    const url = initialData ? `http://localhost:5000/api/services/${initialData._id}` : `http://localhost:5000/api/services`;
+    const url = initialData ? `https://marketing-b3je.onrender.com/api/services/${initialData._id}` : `https://marketing-b3je.onrender.com/api/services`;
     try {
       const response = await fetch(url, {
         method: initialData ? 'PUT' : 'POST',

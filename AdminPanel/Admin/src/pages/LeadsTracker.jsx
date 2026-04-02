@@ -11,7 +11,7 @@ export const LeadsTracker = () => {
     const fetchLeads = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/pricing/admin/leads", {
+        const res = await axios.get("https://marketing-b3je.onrender.com/api/pricing/admin/leads", {
           headers: { Authorization: `Bearer ${token}` }
         });
         setLeads(res.data);

@@ -31,7 +31,7 @@ export const PricingForm = ({ selected, onSuccess, onCancel }) => {
     e.preventDefault();
     setLoading(true);
     const method = selected ? "PUT" : "POST";
-    const url = selected ? `http://localhost:5000/api/pricing/${selected._id}` : "http://localhost:5000/api/pricing";
+    const url = selected ? `https://marketing-b3je.onrender.com/api/pricing/${selected._id}` : "https://marketing-b3je.onrender.com/api/pricing";
 
     try {
       const res = await fetch(url, {

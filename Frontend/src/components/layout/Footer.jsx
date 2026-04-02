@@ -21,7 +21,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchFooterData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/services');
+        const response = await fetch('https://marketing-b3je.onrender.com/api/services');
         const data = await response.json();
         setDynamicServices(data.slice(0, 6));
       } catch (err) {

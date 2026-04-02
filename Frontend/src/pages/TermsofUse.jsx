@@ -9,7 +9,7 @@ const TermsOfUse = () => {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/team");
+        const res = await fetch("https://marketing-b3je.onrender.com/api/team");
         const data = await res.json();
         setTeamMembers(data);
       } catch (err) {

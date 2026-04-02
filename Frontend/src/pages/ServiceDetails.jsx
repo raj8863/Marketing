@@ -27,8 +27,8 @@ const ServiceDetails = () => {
       setLoading(true);
       try {
         const [singleResponse, allResponse] = await Promise.all([
-          fetch(`http://localhost:5000/api/services/slug/${slug}`),
-          fetch(`http://localhost:5000/api/services`),
+          fetch(`https://marketing-b3je.onrender.com/api/services/slug/${slug}`),
+          fetch(`https://marketing-b3je.onrender.com/api/services`),
         ]);
         if (singleResponse.ok) setService(await singleResponse.json());
         if (allResponse.ok) setAllServices(await allResponse.json());

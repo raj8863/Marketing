@@ -16,7 +16,7 @@ const BlogView = ({ initialMode = "list" }) => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/blogs');
+      const response = await fetch('https://marketing-b3je.onrender.com/api/blogs');
       if (!response.ok) throw new Error("Failed to fetch blogs");
       const data = await response.json();
       setBlogs(data);
@@ -30,7 +30,7 @@ const BlogView = ({ initialMode = "list" }) => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this article? This action cannot be undone.")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/blogs/${id}`, { method: 'DELETE' });
+        const response = await fetch(`https://marketing-b3je.onrender.com0/api/blogs/${id}`, { method: 'DELETE' });
         if (response.ok) {
           setBlogs(blogs.filter(b => b._id !== id));
         }

@@ -37,7 +37,7 @@ const Profile = ({ setActiveView }) => {
   const loadProfile = async () => {
     setIsSyncing(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch("https://marketing-b3je.onrender.com/api/auth/me", {
         headers: { "Authorization": getAuthHeader() }
       });
       
@@ -82,7 +82,7 @@ const Profile = ({ setActiveView }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/profile", {
+      const res = await fetch("https://marketing-b3je.onrender.com/api/auth/profile", {
         method: "PUT",
         headers: {
           // IMPORTANT: Do NOT set 'Content-Type' manually when using FormData
@@ -110,7 +110,7 @@ const Profile = ({ setActiveView }) => {
   const handleDelete = async () => {
     if (window.confirm("CRITICAL: Permanent deletion of account. Proceed?")) {
       try {
-        const res = await fetch("http://localhost:5000/api/auth/profile", {
+        const res = await fetch("https://marketing-b3je.onrender.com/api/auth/profile", {
           method: "DELETE",
           headers: { "Authorization": getAuthHeader() }
         });
@@ -149,7 +149,7 @@ const Profile = ({ setActiveView }) => {
                 {previewUrl ? (
                   <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
                 ) : user?.profileImage ? (
-                  <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" className="w-full h-full object-cover" />
+                  <img src={`https://marketing-b3je.onrender.com${user.profileImage}`} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   form.name.charAt(0) || "U"
                 )}

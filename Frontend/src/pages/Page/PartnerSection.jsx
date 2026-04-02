@@ -28,7 +28,7 @@ const handleBooking = async (e) => {
 
     try {
       // Send data to your Node.js backend
-      const response = await fetch('http://localhost:5000/api/bookings', {
+      const response = await fetch('https://marketing-b3je.onrender.com/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

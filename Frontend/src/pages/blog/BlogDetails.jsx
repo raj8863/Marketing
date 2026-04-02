@@ -22,8 +22,8 @@ const BlogDetails = () => {
       try {
         // Fetch specific blog AND all blogs at the same time
         const [singleResponse, allResponse] = await Promise.all([
-            fetch(`http://localhost:5000/api/blogs/slug/${id}`),
-            fetch('http://localhost:5000/api/blogs')
+            fetch(`https://marketing-b3je.onrender.com/api/blogs/slug/${id}`),
+            fetch('https://marketing-b3je.onrender.com/api/blogs')
         ]);
 
         if (singleResponse.ok) {
@@ -46,7 +46,7 @@ const BlogDetails = () => {
   const handleLike = async () => {
     if (hasLiked) return; 
     try {
-      const response = await fetch(`http://localhost:5000/api/blogs/${post._id}/like`, { method: 'PUT' });
+      const response = await fetch(`https://marketing-b3je.onrender.com/api/blogs/${post._id}/like`, { method: 'PUT' });
       if (response.ok) {
         const data = await response.json();
         setPost(prev => ({ ...prev, likes: data.likes }));
@@ -61,7 +61,7 @@ const BlogDetails = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/blogs/${post._id}/comment`, {
+      const response = await fetch(`https://marketing-b3je.onrender.com/api/blogs/${post._id}/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(commentData)

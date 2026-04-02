@@ -77,8 +77,8 @@ const ServiceForm = ({ initialData = null, onSave, onCancel }) => {
     };
 
     const url = initialData
-      ? `http://localhost:5000/api/services/${initialData._id}`
-      : `http://localhost:5000/api/services`;
+      ? `https://marketing-b3je.onrender.com/api/services/${initialData._id}`
+      : `https://marketing-b3je.onrender.com/api/services`;
 
     const method = initialData ? 'PUT' : 'POST';
 

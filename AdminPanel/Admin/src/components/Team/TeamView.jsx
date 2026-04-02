@@ -15,7 +15,7 @@ const TeamView = ({ onEdit }) => {
   const fetchTeam = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/team");
+      const res = await fetch("https://marketing-b3je.onrender.com/api/team");
       const data = await res.json();
       if (res.ok) {
         setTeam(data);
@@ -37,7 +37,7 @@ const TeamView = ({ onEdit }) => {
     if (!window.confirm("Kyan aap is operative ko system se hatana chahte hain?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/team/${id}`, {
+      const res = await fetch(`https://marketing-b3je.onrender.com/api/team/${id}`, {
         method: "DELETE",
         headers: { "Authorization": getAuthHeader() }
       });
@@ -58,7 +58,7 @@ const TeamView = ({ onEdit }) => {
   const getImgSrc = (img) => {
     if (!img) return "https://via.placeholder.com/400x400?text=No+Visual";
     // Agar Cloudinary URL hai (starts with http), toh direct return karein
-    return img.startsWith('http') ? img : `http://localhost:5000${img}`;
+    return img.startsWith('http') ? img : `https://marketing-b3je.onrender.com${img}`;
   };
 
   if (loading) {

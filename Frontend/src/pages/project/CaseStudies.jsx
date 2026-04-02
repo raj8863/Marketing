@@ -25,7 +25,7 @@ const CaseStudies = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/projects/slug/${slug}`);
+        const res = await fetch(`https://marketing-b3je.onrender.com/api/projects/slug/${slug}`);
         const data = await res.json();
         setProject(data);
       } catch (err) {

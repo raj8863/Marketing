@@ -10,7 +10,7 @@ const AuditDashboard = () => {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/audit/all");
+      const response = await fetch("https://marketing-b3je.onrender.com/api/audit/all");
       const data = await response.json();
       if (data.success) {
         setLeads(data.data);

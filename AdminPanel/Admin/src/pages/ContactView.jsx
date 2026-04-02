@@ -10,7 +10,7 @@ export const ContactView = () => {
   const [messages, setMessages] = useState([]);
 
   const fetchMessages = async () => {
-    const res = await fetch('http://localhost:5000/api/contacts');
+    const res = await fetch('https://marketing-b3je.onrender.com/api/contacts');
     const data = await res.json();
     setMessages(data);
   };
@@ -30,7 +30,7 @@ export const ContactView = () => {
                 <p className="text-sm text-gray-500">{msg.email} | {msg.phone}</p>
               </div>
               <button onClick={async () => {
-                await fetch(`http://localhost:5000/api/contacts/${msg._id}`, { method: 'DELETE' });
+                await fetch(`https://marketing-b3je.onrender.com/api/contacts/${msg._id}`, { method: 'DELETE' });
                 fetchMessages();
               }} className="text-red-400 hover:text-red-600">
                 <Trash2 size={18} />

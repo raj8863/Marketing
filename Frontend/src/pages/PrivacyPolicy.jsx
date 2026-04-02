@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
   useEffect(() => {
     const fetchPrivacy = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/privacy");
+        const res = await axios.get("https://marketing-b3je.onrender.com/api/privacy");
         setData(res.data);
       } catch (err) {
         setError("Failed to load privacy policy");

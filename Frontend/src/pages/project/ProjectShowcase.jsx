@@ -15,7 +15,7 @@ const ProjectShowcase = ({ showHero = true }) => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/projects');
+        const res = await fetch('https://marketing-b3je.onrender.com/api/projects');
         const data = await res.json();
         setProjects(data);
       } catch (err) {

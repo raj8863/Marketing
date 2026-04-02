@@ -18,7 +18,7 @@ const ServicesView = ({ initialMode = "list" }) => {
   const fetchServices = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/services');
+      const response = await fetch('https://marketing-b3je.onrender.com/api/services');
       if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
       setServices(data);
@@ -32,7 +32,7 @@ const ServicesView = ({ initialMode = "list" }) => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this service?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/services/${id}`, { method: 'DELETE' });
+        const response = await fetch(`https://marketing-b3je.onrender.com/api/services/${id}`, { method: 'DELETE' });
         if (response.ok) {
           setServices(services.filter(s => s._id !== id));
         }

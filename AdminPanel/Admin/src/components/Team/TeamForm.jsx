@@ -51,8 +51,8 @@ const TeamForm = ({ selected, onSuccess, onCancel }) => {
 
     try {
       const url = selected?._id 
-        ? `http://localhost:5000/api/team/${selected._id}` 
-        : "http://localhost:5000/api/team";
+        ? `https://marketing-b3je.onrender.com/api/team/${selected._id}` 
+        : "https://marketing-b3je.onrender.com/api/team";
       
       const method = selected?._id ? "PUT" : "POST";
 

@@ -10,7 +10,7 @@ const AdminPrivacy = () => {
   // 🔥 Load data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/privacy")
+      .get("https://marketing-b3je.onrender.com/api/privacy")
       .then((res) => {
         setSections(res.data?.sections || []);
       })
@@ -38,7 +38,7 @@ const AdminPrivacy = () => {
   const handleSave = async () => {
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/api/privacy/update", {
+      await axios.post("https://marketing-b3je.onrender.com/api/privacy/update", {
         sections,
       });
       alert("✅ Updated Successfully");

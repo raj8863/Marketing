@@ -47,8 +47,8 @@ const ProjectForm = ({ onSave, onCancel, initialData = null }) => {
 
     try {
       const url = initialData 
-        ? `http://localhost:5000/api/projects/${initialData._id}` 
-        : "http://localhost:5000/api/projects";
+        ? `https://marketing-b3je.onrender.com/api/projects/${initialData._id}` 
+        : "https://marketing-b3je.onrender.com/api/projects";
       
       const response = await fetch(url, {
         method: initialData ? "PUT" : "POST",

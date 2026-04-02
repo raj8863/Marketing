@@ -35,7 +35,7 @@ import {
   const fetchQuotes = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/quotes');
+      const response = await fetch('https://marketing-b3je.onrender.com/api/quotes');
       const data = await response.json();
       setQuotes(data);
     } catch (error) {
@@ -52,7 +52,7 @@ import {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this inquiry?")) {
       try {
-        const response = await fetch(`http://localhost:5000/api/quotes/${id}`, {
+        const response = await fetch(`https://marketing-b3je.onrender.com/api/quotes/${id}`, {
           method: 'DELETE',
         });
         if (response.ok) {

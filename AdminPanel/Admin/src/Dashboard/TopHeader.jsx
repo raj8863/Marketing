@@ -16,8 +16,8 @@ const TopHeader = ({ onOpenMenu, searchQuery, setSearchQuery, user, logout, setA
     try {
       // API endpoints aapke routes ke hisaab se (Quotes aur Contacts fetch kar rahe hain)
       const [quotesRes, contactsRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/quotes"),
-        axios.get("http://localhost:5000/api/contacts")
+        axios.get("https://marketing-b3je.onrender.com/api/quotes"),
+        axios.get("https://marketing-b3je.onrender.com/api/contacts")
       ]);
 
       const newNotifs = [

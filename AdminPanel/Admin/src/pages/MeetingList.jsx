@@ -24,7 +24,7 @@ const MeetingList = () => {
   useEffect(() => {
     const fetchMeetings = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/bookings');
+        const response = await fetch('https://marketing-b3je.onrender.com/api/bookings');
         const result = await response.json();
         
         if (result.success) {
@@ -43,7 +43,7 @@ const MeetingList = () => {
   // 2. Update Status Function (Talks to your PUT route)
   const updateMeetingStatus = async (id, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/bookings/${id}`, {
+      const response = await fetch(`https://marketing-b3je.onrender.com/api/bookings/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),

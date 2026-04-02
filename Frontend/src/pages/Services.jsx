@@ -36,7 +36,7 @@ const Services = ({ showHero = false }) => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/services');
+        const response = await fetch('https://marketing-b3je.onrender.com/api/services');
         if (!response.ok) throw new Error("Failed to fetch services");
         const data = await response.json();
         setServicesData(data);

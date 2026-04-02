@@ -10,7 +10,7 @@ const FAQForm = ({ selected, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = selected ? "PUT" : "POST";
-    const url = selected ? `http://localhost:5000/api/faqs/${selected._id}` : "http://localhost:5000/api/faqs";
+    const url = selected ? `https://marketing-b3je.onrender.com/api/faqs/${selected._id}` : "https://marketing-b3je.onrender.com/api/faqs";
 
     const res = await fetch(url, {
       method,

@@ -9,7 +9,7 @@ const Team = () => {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/team");
+        const res = await axios.get("https://marketing-b3je.onrender.com/api/team");
         setTeamMembers(res.data);
       } catch (err) {
         console.error("Failed to sync team data");

@@ -1,151 +1,194 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   FaFacebookF,
   FaTwitter,
-  FaPinterestP,
+  FaLinkedinIn,
   FaInstagram,
+  FaWhatsapp,
   FaPhoneAlt,
   FaEnvelope,
   FaMapMarkerAlt,
+  FaArrowUp,
+  FaHeadset
 } from "react-icons/fa";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const [dynamicServices, setDynamicServices] = useState([]);
+
+  useEffect(() => {
+    const fetchFooterData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/services');
+        const data = await response.json();
+        setDynamicServices(data.slice(0, 6));
+      } catch (err) {
+        console.error("Footer sync error:", err);
+      }
+    };
+    fetchFooterData();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // --- REUSABLE HOVER CLASS FOR ALL LINKS ---
+  const linkHoverClass = "flex items-center gap-2 text-gray-400 hover:text-emerald-400 hover:pl-2 transition-all duration-300 group";
+  const iconSpan = <span className="w-0 h-[1px] bg-emerald-500 group-hover:w-3 transition-all duration-300"></span>;
+
   return (
-    <footer className="bg-[#0b0f12] text-gray-300">
-      {/* Top Footer */}
-      <div className="max-w-7xl mx-auto px-6 py-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-[#050709] text-gray-400 font-sans border-t border-white/5 relative overflow-hidden">
+      
+      {/* --- BACKGROUND ARCHITECTURE --- */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.02] pointer-events-none"></div>
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-emerald-500/5 blur-[140px] rounded-full pointer-events-none"></div>
 
-        {/* Brand */}
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-4">Decent
-            <span className="text-emerald-400">11</span>
-          </h2>
-          <p className="text-gray-400 leading-relaxed mb-6">
-            Integer purus odio, placerat nec ande rhoncus in,
-            ullamcorper nec dolor. on aptent taciti sociosqu.
+      {/* --- MAIN CONTENT GRID --- */}
+      <div className="max-w-7xl mx-auto px-6 py-24 grid gap-16 md:grid-cols-2 lg:grid-cols-4 relative z-10">
+
+        {/* 1. BRAND IDENTITY */}
+        <div className="space-y-8">
+          <Link to="/" onClick={scrollToTop} className="inline-block">
+            <h2 className="text-4xl font-black text-white tracking-tighter hover:tracking-normal transition-all duration-500 ">
+              Verto<span className="text-emerald-500"> Digital</span>
+            </h2>
+          </Link>
+          <p className="text-sm leading-relaxed opacity-60 font-medium max-w-xs">
+            Architecting high-performance digital ecosystems. We transform complex engineering challenges into seamless enterprise experiences.
           </p>
-
-          {/* Social Icons */}
           <div className="flex gap-3">
             {[
-              <FaFacebookF />,
-              <FaTwitter />,
-              <FaPinterestP />,
-              <FaInstagram />,
-            ].map((icon, i) => (
-              <div
-                key={i}
-                className="w-10 h-10 flex items-center justify-center
-                           rounded-full bg-black/60 text-white
-                           hover:bg-emerald-400 hover:text-black
-                           transition"
+              { Icon: FaLinkedinIn, link: "#" },
+              { Icon: FaInstagram, link: "#" },
+              { Icon: FaTwitter, link: "#" },
+              { Icon: FaWhatsapp, link: "#" }
+            ].map((social, i) => (
+              <motion.a 
+                whileHover={{ y: -5, backgroundColor: "#10b981", color: "#000" }}
+                key={i} 
+                href={social.link} 
+                className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-500 border border-white/5"
               >
-                {icon}
-              </div>
+                <social.Icon size={16} />
+              </motion.a>
             ))}
           </div>
         </div>
 
-        {/* Our Services */}
+        {/* 2. DYNAMIC EXPERTISE (Synchronized Hovers) */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Our Services
+          <h3 className="text-white text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
+            <span className="w-4 h-[1px] bg-emerald-500"></span> Expertise
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-5 text-sm font-medium">
+            {dynamicServices.length > 0 ? (
+              dynamicServices.map((service) => (
+                <li key={service._id}>
+                  <Link to={`/service/${service.slug}`} onClick={scrollToTop} className={linkHoverClass}>
+                    {iconSpan} {service.title}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              [1, 2, 3, 4, 5].map(i => <div key={i} className="h-4 w-40 bg-white/5 animate-pulse rounded-lg mb-4"></div>)
+            )}
+          </ul>
+        </div>
+
+        {/* 3. PLATFORM NAVIGATION (Synchronized Hovers) */}
+        <div>
+          <h3 className="text-white text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
+            <span className="w-4 h-[1px] bg-emerald-500"></span> Platform
+          </h3>
+          <ul className="space-y-5 text-sm font-medium">
             {[
-              "Strategy & Research",
-              "Web Development",
-              "Web Solution",
-              "Digital Marketing",
-              "App Design",
-              "App Development",
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="hover:text-emerald-400 cursor-pointer transition"
-              >
-                {item}
+              { name: "About Agency", link: "/about" },
+              { name: "Digital Portfolio", link: "/projects" },
+              { name: "Global Services", link: "/services" },
+              { name: "Contact Node", link: "/contact" },
+              { name: "Privacy Protocol", link: "/privacy-policy" },
+            ].map((item, index) => (
+              <li key={index}>
+                <Link to={item.link} onClick={scrollToTop} className={linkHoverClass}>
+                  {iconSpan} {item.name}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Quick Links */}
+        {/* 4. MATRIX CONNECT (Enhanced Contact) */}
         <div>
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Quick Links
+          <h3 className="text-white text-[10px] font-black uppercase tracking-[0.3em] mb-10 flex items-center gap-2">
+            <span className="w-4 h-[1px] bg-emerald-500"></span> Connect
           </h3>
-          <ul className="space-y-3">
-            {[
-              "About Us",
-              "Services",
-              "Project",
-              "Blog",
-              "Career",
-              "Pricing Plan",
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="hover:text-emerald-400 cursor-pointer transition"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contacts */}
-        <div>
-          <h3 className="text-xl font-semibold text-white mb-5">
-            Contacts
-          </h3>
-
-          <div className="space-y-4">
-            <div className="flex items-start gap-3">
-              <FaPhoneAlt className="text-emerald-400 mt-1" />
-              <div>
-                <p>+880 566 111 985</p>
-                <p>+880 657 111 576</p>
+          <div className="space-y-8">
+            <a href="tel:+918863907523" className="flex gap-5 items-start group transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-emerald-400 shrink-0 border border-white/5 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500">
+                <FaPhoneAlt size={14} />
               </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <FaEnvelope className="text-emerald-400 mt-1" />
-              <div>
-                <p>info@example.com</p>
-                <p>info@support.com</p>
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Direct Line</span>
+                <span className="text-white font-bold group-hover:text-emerald-400 transition-colors">+91 88639 07523</span>
               </div>
-            </div>
+            </a>
 
-            <div className="flex items-start gap-3">
-              <FaMapMarkerAlt className="text-emerald-400 mt-1" />
-              <p>
-                168/170, Avenue 01, <br />
-                Mirpur DOHS, Bangladesh
-              </p>
+            <a href="mailto:infodecent11@gmail.com" className="flex gap-5 items-start group transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-emerald-400 shrink-0 border border-white/5 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-500">
+                <FaEnvelope size={14} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Official Node</span>
+                <span className="text-white font-bold group-hover:text-emerald-400 transition-colors break-all">infodecent11@gmail.com</span>
+              </div>
+            </a>
+
+            <div className="flex gap-5 items-start group">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-emerald-400 shrink-0 border border-white/5 group-hover:border-emerald-500 transition-all duration-500">
+                <FaMapMarkerAlt size={14} />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Headquarters</span>
+                <span className="text-gray-200 text-xs font-bold">Gurgaon, Haryana, IN</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-6
-                        flex flex-col md:flex-row
-                        items-center justify-between gap-4">
-          <p className="text-sm text-gray-400">
-            Copyright 2026 <span className="text-white">Decent11</span> |
-            Design By <span className="text-white">Egens Lab</span>
-          </p>
-
-          <div className="flex gap-6 text-sm">
-            <span className="hover:text-emerald-400 cursor-pointer">
-              Privacy Policy
-            </span>
-            <span className="hover:text-emerald-400 cursor-pointer">
-              Terms of Use
-            </span>
+      {/* --- FOOTER BOTTOM BAR --- */}
+      <div className="border-t border-white/5 bg-black/40 py-10 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-8">
+          
+          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-12">
+             <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/70">System Status: Operational</span>
+             </div>
+             <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30">
+              © {currentYear} Decent11 Innovation Pvt Ltd.
+            </p>
           </div>
+
+          <div className="flex items-center gap-8">
+            <div className="flex gap-6 text-[9px] font-black uppercase tracking-[0.3em]">
+              <Link to="/terms" onClick={scrollToTop} className="hover:text-emerald-400 transition-colors opacity-40 hover:opacity-100">Terms</Link>
+              <Link to="/contact" onClick={scrollToTop} className="hover:text-emerald-400 transition-colors opacity-40 hover:opacity-100">Support</Link>
+            </div>
+            
+            <motion.button 
+              whileHover={{ scale: 1.1, backgroundColor: "#10b981", color: "#000" }}
+              whileTap={{ scale: 0.9 }}
+              onClick={scrollToTop}
+              className="w-12 h-12 bg-white/5 text-white rounded-full flex items-center justify-center transition-all border border-white/5 shadow-lg"
+            >
+              <FaArrowUp size={14} />
+            </motion.button>
+          </div>
+          
         </div>
       </div>
     </footer>

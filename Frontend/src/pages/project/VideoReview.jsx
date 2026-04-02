@@ -10,7 +10,7 @@ const VideoReview = () => {
   useEffect(() => {
     const fetchVideoReviews = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/video-reviews");
+        const res = await fetch("https://marketing-b3je.onrender.com/api/video-reviews");
         const data = await res.json();
         setReviews(data);
       } catch (err) {

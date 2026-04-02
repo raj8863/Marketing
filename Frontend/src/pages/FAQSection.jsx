@@ -53,7 +53,7 @@ const FAQSection = ({ showHero = true }) => {
   useEffect(() => {
     const getFaqs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/faqs");
+        const res = await axios.get("https://marketing-b3je.onrender.com/api/faqs");
         setFaqs(res.data);
       } catch (err) {
         console.error("Knowledge_Base_Sync_Error:", err);

@@ -16,7 +16,7 @@ const Pricing = () => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", website: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/pricing/plans")
+    axios.get("https://marketing-b3je.onrender.com/api/pricing/plans")
       .then(res => setPlansData(res.data))
       .catch(err => console.error("Sync_Error:", err))
       .finally(() => setLoading(false));
@@ -26,7 +26,7 @@ const Pricing = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/pricing/enquire", { 
+      await axios.post("https://marketing-b3je.onrender.com/api/pricing/enquire", { 
         ...formData, 
         planChosen: selectedPlan 
       });
